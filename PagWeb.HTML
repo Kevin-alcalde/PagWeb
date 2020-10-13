@@ -14,12 +14,18 @@
 <script>
 $(document).ready(function(){
   $("button").click(function(){
-    $.get("https://api.github.com/users/"+ $("#usr").val() , function(data, status){
-      $("#username").text(data.login)
-      $("#seg").text(data.followers)
-      $("#repos").text(data.public_repos)
+    $.get("https://api.github.com/users/"+ $("#usr").val()+"/repos" , function(data, status){
+    
+    for( var i=0; i< data.length;i++)
+      { var item = data[i]
+       
+      $("#tabla").append("<tr><td>"+item.name+"</td><td>"+item.stargazers_count+"</td><td>"+item.description+"</td></tr>");
+    
+    }
+    
+    }
       
-      },"json");
+      ,"json");
   
    
   });
@@ -31,7 +37,7 @@ $(document).ready(function(){
 
 <div class="jumbotron text-center">
   <h1>Mi primera página WEB</h1>
-  <p>Búsqueda en github por usuario</p> 
+  <p>Búsqueda de repositorios introduciendo el nombre de usuario</p> 
 </div>
 
 
@@ -39,17 +45,17 @@ $(document).ready(function(){
 
 
 <div class="container">
-  <h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+  <h2>Respositorios</h2>
+  <p></p>            
   <table class="table">
     <thead>
       <tr>
-        <th>UserName</th>
+        <th>Nombre</th>
         <th>Seguidores</th>
-        <th>Repositorios</th>
+        <th>Descripción</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tabla">
       <tr>
         <td id ="username"></td>
         <td id ="seg"></td>
@@ -57,7 +63,7 @@ $(document).ready(function(){
       </tr>
     </tbody>
   </table>
-   <button type="button" class="btn">Basic</button>
+   <button type="button" class="btn">Búsqueda</button>
    <input type="text" class="form-control" id="usr">
 </div>
 
