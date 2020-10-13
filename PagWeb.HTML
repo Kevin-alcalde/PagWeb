@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <title>Mi primera página WEB</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.get("https://api.github.com/users/"+ $("#usr").val() , function(data, status){
+      $("#username").text(data.login)
+      $("#seg").text(data.followers)
+      $("#repos").text(data.public_repos)
+      
+      },"json");
+  
+   
+  });
+});
+</script>
+</head>
+
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Mi primera página WEB</h1>
+  <p>Búsqueda en github por usuario</p> 
+</div>
+
+
+
+
+
+<div class="container">
+  <h2>Basic Table</h2>
+  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>UserName</th>
+        <th>Seguidores</th>
+        <th>Repositorios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id ="username"></td>
+        <td id ="seg"></td>
+        <td id ="repos"></td>
+      </tr>
+    </tbody>
+  </table>
+   <button type="button" class="btn">Basic</button>
+   <input type="text" class="form-control" id="usr">
+</div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
